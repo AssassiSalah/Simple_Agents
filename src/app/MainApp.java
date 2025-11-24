@@ -18,37 +18,6 @@ public class MainApp extends Application {
 	public static HashMap<String, AgentContainer> containers = new HashMap<String, AgentContainer>(); // Name_Con, Container
 	public static ArrayList<AgentController> controllers = new ArrayList<AgentController>(); // List of Controllers
 	public static HashMap<String, String> agentsNames = new HashMap<String, String>(); // Name, Color
-
-    public static void updateAgentsBrodCast(String fromAgent, String message) {
-    	Platform.runLater(() -> {
-    		String color = agentsNames.get(fromAgent);
-    		for (AgentController controller : controllers) {
-				if (!controller.agent.getName().equals(fromAgent)) {
-					controller.appendColoredLog(fromAgent, message, color);
-				}
-    		}
-    	});
-    }
-    
-	public static void updateAgentsSentMsg(String fromAgent, String to, String message) {
-		Platform.runLater(() -> {
-            System.out.println("D2 " + fromAgent + " sending message to " + to + ": " + message);
-
-    		String color = agentsNames.get(fromAgent);
-    		for (AgentController controller : controllers) {
-    			String agentName = controller.agent.getLocalName();
-    			System.out.println("D3 Checking agent " + agentName);
-				if (agentName.equals(fromAgent)) {
-					controller.appendColoredLog(fromAgent, message, color);
-					System.out.println("D4 Message sent from " + fromAgent);
-				}
-				if (agentName.equals(to)) {
-					controller.appendColoredLog(fromAgent, message, color);
-					System.out.println("D5 Message received at " + to);
-				}
-    		}
-    	});
-	}
 	
     public static List<String> getAvailableAgents(MyAgent agent) {
         List<String> agents = new ArrayList<>(MainApp.agentsNames.keySet());

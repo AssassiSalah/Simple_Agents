@@ -7,12 +7,12 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/java-fx-21">
+	<classpathentry kind="lib" path="L:/Work/Dia-mas/tp2/jade/lib/jade.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="E:/Work/eclipse_libraries/jade/lib/jade.jar">
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/javaFX 21.0.8">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>

@@ -2,6 +2,8 @@ package app;
 
 import jade.core.Agent;
 import jade.core.ContainerID;
+import jade.core.behaviours.CyclicBehaviour;
+import jade.core.behaviours.OneShotBehaviour;
 import jade.core.AID;
 import jade.lang.acl.ACLMessage;
 import jade.wrapper.AgentContainer;
@@ -17,7 +19,24 @@ public class MyAgent extends Agent {
 
     @Override
     protected void setup() {
+    	addBehaviour(new CyclicBehaviour() {
+			
+			@Override
+			public void action() {
+		        //MainApp.updateAgentsSentMsg(getLocalName(), receiverName, message);
+				ACLMessage msg = receive(); // Get MSG
+				if(msg != null) {
+					controller.appendColoredLog(msg.getSender().getLocalName(),  msg.getContent(), MainApp.agentsNames.get(msg.getSender().getLocalName()));
+					System.out.println("Message received at " + getLocalName());
+				} else {
+					block(); // wait until new msg arrive
+				}
+				
+				
+			}
+		});
         Platform.runLater(this::createAndShowGUI);
+        
     }
 
     private void createAndShowGUI() {
@@ -90,7 +109,6 @@ public class MyAgent extends Agent {
 			        message.setContent(text);
 			        send(message);
 
-			        Platform.runLater(() -> MainApp.updateAgentsBrodCast(getLocalName(), text));
 			        controller.log("Broadcasted message: " + text);
 				} else {
 					controller.log("⚠ Missing arguments: message to broadcast.");
@@ -156,7 +174,6 @@ public class MyAgent extends Agent {
 			        message.setContent(text);
 			        send(message);
 
-			        Platform.runLater(() -> MainApp.updateAgentsBrodCast(getLocalName(), text));
 			        controller.log("Broadcasted message: " + text);
 				} else {
 					controller.log("⚠ Missing arguments: message to broadcast.");
@@ -192,9 +209,8 @@ public class MyAgent extends Agent {
         msg.setContent(message);
         send(msg);
 
-        MainApp.updateAgentsSentMsg(getLocalName(), receiverName, message);
         controller.log("Sent message to " + receiverName + ": " + message);
-	    System.out.println("Message sent from " + getLocalName() + " to " + receiverName + ": " + msg);
+	    //System.out.println("Message sent from " + getLocalName() + " to " + receiverName + ": " + msg);
     }
 
     // Transfer Agent

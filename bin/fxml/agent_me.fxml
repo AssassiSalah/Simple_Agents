@@ -26,7 +26,7 @@
             </HBox>
 
             <HBox spacing="10">
-                <Button text="Transfer" onAction="#onTransfetAgent"
+                <Button text="Transfer" onAction="#onTransfetAgent" textAlignment="Center"
                         style="-fx-background-color: #9b59b6; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6;"/>
                 <Button text="Clone" onAction="#onCloneAgent"
                         style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6;"/>
