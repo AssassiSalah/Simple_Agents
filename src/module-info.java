@@ -4,6 +4,7 @@ module Agents_gui_tp2 {
 	requires jade;
 	requires javafx.swing;
 	requires javafx.graphics;
+	requires java.base;
 
     opens app to javafx.graphics, javafx.fxml;
     
